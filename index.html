@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="./ineeda.css">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Need A...</title>
+   
+    <!-- Menu options -->
+	<div class="hamburger-menu" onclick="toggleMenu()">
+		<div class="Partner"></div>
+		<div class="About"></div>
+		<div class="Contact"></div>
+		<div class="Feedback"></div>
+	</div>
+	
+    <div class="menu" id="menu">
+        <a href="http://www.ineeda.work/partner">Become a Pro Partner</a>
+        <a href="http://www.ineeda.work/about">About</a>
+        <a href="http://www.ineeda.work/contact">Contact I Need A</a>
+        <a href="http://www.ineeda.work/feedback">Feedback on A Pro</a>
+    </div>
+	<br>
+	<br>
+	<div><h3 class="center">Find A Pro - Keep Your Data private</h3>
+	</div>
+   
+	<div class="images-container">
+        <img src="./assets/plumber.jpg" class="job-image">
+        <img src="./assets/carpenters.jpg" class="job-image">
+        <img src="./assets/electrician.jpg" class="job-image">
+        <img src="./assets/lanscapers.jpg" class="job-image">
+    </div>
+	<h4><p class="center">Tell us what you're looking for and we'll send upto Pros who know how to take care of you.</p></h4>
+    <div class="header-container">
+        <h1 class="center">I Need A<span id="occupation-line"> ...</span></h1>
+        <select id="occupation-select" class="input-field center">
+            <option value="" disabled selected>Select an occupation</option>
+            <option value="AC & Heat Pro">AC & Heat Pro</option>
+            <option value="Attorney">Attorney</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Deck Builder">Deck Builder</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Fence Builder">Fence Builder</option>
+			<option value="Handy Man">Handyperson</option>
+            <option value="Landscape Pro">Landscape Pro</option>
+			<option value="Painter">Painter</option>
+            <option value="Plumber">Plumber</option>
+            <option value="Septic Tank Pro">Septic Tank Pro</option>
+            <option value="Tree Company">Tree Company</option>
+        </select>
+    </div>
+    <p id="chosen-occupation" class="center"></p>
+	<h3><p class="center">Enter your United States zip code:</p></h3>
+	<input type="text" id="zip-input" class="input-field center" placeholder="Zip code">
+	<h3><p class="center">Tell us about your project:</p></h3>
+	<textarea id="project-input" class="input-field center" placeholder="Enter your project details here" rows="5"></textarea>
+	<h3><p class="center">Upload Any Photos of The Project:</p></h3>
+    <input type="file" id="image-input" class="input-field center" accept="image/*" multiple>
+	<h3><p class="center">Your info</p></h3>
+	<p class="center">Check the preferred contact type</p>
+	<div class="center">
+		<input type="email" id="email-input" class="input-field" placeholder="Email">
+		<input type="tel" id="phone-input" class="input-field" placeholder="Phone number">
+	</div>
+	<button id="submit-btn" class="button center">Submit</button>
+	<br>
+	<br>
+	<p class="left"> Copywrite I Need A, 2023</p> </p>
+    
+   	<script>
+		// auto-fill occupation input field based on user input
+		const occupationInput = document.getElementById("occupation-input");
+		const occupationLine = document.getElementById("occupation-line");
+		occupationInput.addEventListener("input", function() {
+			occupationLine.textContent = " " + occupationInput.value.charAt(occupationInput.value.indexOf("A") + 1).toUpperCase() + occupationInput.value.slice(occupationInput.value.indexOf("A") + 2) + " ";
+		});
+
+		// handle occupation selection from the dropdown
+		const occupationSelect = document.getElementById("occupation-select");
+		const chosenOccupation = document.getElementById("chosen-occupation");
+		occupationSelect.addEventListener("change", function() {
+			const selectedOption = occupationSelect.options[occupationSelect.selectedIndex];
+			chosenOccupation.textContent = selectedOption.value;
+		});
+
+		// submit form data to server
+		const submitBtn = document.getElementById("submit-btn");
+		submitBtn.addEventListener("click", function() {
+			const occupation = occupationSelect.value.trim();
+			const zip = document.getElementById("zip-input").value.trim();
+			const project = document.getElementById("project-input").value.trim();
+			const email = document.getElementById("email-input").value.trim();
+			const phone = document.getElementById("phone-input").value.trim();
+            const images = document.getElementById("image-input").files;
+			// send data to server using XMLHttpRequest or fetch API
+			// ...
+		});
+
+        // Toggle the menu
+        function toggleMenu() {
+		const menu = document.getElementById("menu");
+		const hamburgerMenu = document.querySelector(".hamburger-menu");
+		hamburgerMenu.classList.toggle("open");
+		menu.classList.toggle("open");
+	}	
+</body>
+</html>
